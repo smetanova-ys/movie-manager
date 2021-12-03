@@ -4,6 +4,8 @@ import ru.netology.domain.MovieCard;
 
 public class MovieManager {
 
+    private int numberOfMovies = 10;
+
     private MovieCard[] movies = new MovieCard[0];
 
     public void add(MovieCard movie) {
@@ -22,8 +24,27 @@ public class MovieManager {
         return movies;
     }
 
+    public MovieManager(int numberOfMovies) {
+        this.numberOfMovies = numberOfMovies;
+    }
+
     public MovieManager() {
     }
 
+    public MovieCard[] getAll() {
+        int resultLength;
+        if (numberOfMovies <= movies.length) {
+            resultLength = numberOfMovies;
+        } else {
+            resultLength = movies.length;
+        }
+
+        MovieCard[] result = new MovieCard[resultLength];
+        for (int i = 0; i < result.length; i++) {
+            int index = movies.length - i - 1;
+            result[i] = movies[index];
+        }
+        return result;
+    }
 
 }
